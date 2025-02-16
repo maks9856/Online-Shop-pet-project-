@@ -5,7 +5,7 @@ from django.urls import reverse
 class Category(models.Model):
     name=models.CharField(max_length=50,unique=True)
     slug=models.SlugField(max_length=50,unique=True)
-
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='subcategories', blank=True, null=True)
     class Meta:
         ordering=['name']
         indexes=[models.Index(fields=['name'])]
@@ -17,8 +17,8 @@ class Category(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse("category_detail", args=[self.slug])
-    
+        return reverse("main:category_detail", args=[self.slug])
+
     
 
 class Products(models.Model):
@@ -26,7 +26,7 @@ class Products(models.Model):
                                related_name='products'
                                ,on_delete=models.CASCADE)
     name=models.CharField(max_length=100)
-    slug=models.SlugField(max_length=100)
+    slug=models.SlugField(max_length=100,unique=True)
     image=models.ImageField(upload_to='products/%Y/%m/%d',
                             blank=True)
     description=models.TextField(blank=True)
@@ -53,4 +53,5 @@ class Products(models.Model):
     def sell_price(self):
         if self.discount:
             return round(self.price-self.price*self.discount/100 , 2)
-        return self.priceproducts
+        return self.price
+    
