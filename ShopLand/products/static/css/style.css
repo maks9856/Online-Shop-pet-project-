@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #21201e;
+    padding: 15px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.navbar ul li {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+}
+
+.logolink {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    gap: 10px;
+    font-size: 24px;
+}
+
+.logo {
+    width: 70px;
+    height: auto;
+    object-fit: contain;
+}
+
+.catalog-box {
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.catalog-box a {
+    text-decoration: none;
+    color: white;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid #ff7718;
+    width: 100%;
+    max-width: 800px;
+}
+
+.search-icon {
+    margin-left: 10px;
+    color: gray;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+    background: none;
+}
+
+.search-button {
+    background-color: #ff7718;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-button:hover {
+    background-color: #e86c13;
+}
+
+.container-icons {
+    padding: 10px;
+}
+
+.container-icons:hover {
+    background-color: rgba(255, 255, 255, 0.267);
+    padding: 10px;
+}
+
+@media (max-width: 767px) {
+    .catalog-box, .container-icons {
+        display: none; 
+    }
+}
+
+@media (min-width: 768px) {
+    .catalog-box {
+        display: none; 
+    }
+}
