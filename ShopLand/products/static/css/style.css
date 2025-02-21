@@ -121,6 +121,7 @@ body {
     .catalog-box, .container-icons {
         display: none; 
     }
+    
 }
 
 @media (min-width: 768px) {
