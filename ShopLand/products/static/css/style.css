@@ -47,22 +47,6 @@ body {
     object-fit: contain;
 }
 
-.catalog-box {
-    padding: 10px 20px;
-    border-radius: 5px;
-    display: block;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid white;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.catalog-box a {
-    text-decoration: none;
-    color: white;
-}
-
 .search-container {
     display: flex;
     justify-content: center;
@@ -108,24 +92,71 @@ body {
     background-color: #e86c13;
 }
 
-.container-icons {
+.container-basket, .container-user {
     padding: 10px;
 }
 
-.container-icons:hover {
+.container-basket:hover, .container-user:hover {
     background-color: rgba(255, 255, 255, 0.267);
     padding: 10px;
 }
 
-@media (max-width: 767px) {
-    .catalog-box, .container-icons {
-        display: none; 
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: hidden;
+        gap: 10px;
     }
-    
+    .navbar ul li {
+        flex: none;
+        white-space: nowrap;
+    }
+    .catalog-box, .search-button, .nav-item:first-child {
+        display: none !important;
+    }
+    .search-input {
+        width: 60%;
+        padding: 5px;
+        font-size: 12px;
+    }
+    .container-basket:hover {
+        background-color: rgba(255, 255, 255, 0.267);
+        padding: 3px;
+        border-radius: 3px;
+    }
+    .container-basket {
+        padding: 3px;
+    }
 }
 
-@media (min-width: 768px) {
-    .catalog-box {
-        display: none; 
+@media (max-width: 425px) {
+    .navbar ul {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: hidden;
+        gap: 10px;
+    }
+    .navbar ul li {
+        flex: none;
+        white-space: nowrap;
+    }
+    .catalog-box, .container-user, .search-button, .logo-text {
+        display: none;
+    }
+    .search-input {
+        width: 60%;
+        padding: 5px;
+        font-size: 12px;
+    }
+    .container-basket:hover {
+        background-color: rgba(255, 255, 255, 0.267);
+        padding: 3px;
+        border-radius: 3px;
+    }
+    .container-basket {
+        padding: 3px;
     }
 }
