@@ -15,6 +15,8 @@ import json
 
 
 #read file keyForProgram.json
+with open('keyForProgram.json','r', encoding='utf-8') as f:
+    data=json.load(f)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z%^aj!w&@l(cjd#dpwfws^#e$ol2wb6)oeh#_7b6s3(&a**and'
+SECRET_KEY = data['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -85,11 +87,11 @@ WSGI_APPLICATION = 'ShopLand.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'database_ShopLand',
-        'USER': 'postgres',
-        'PASSWORD': '123456',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': data['NAME'],
+        'USER': data['USER'],
+        'PASSWORD': data['PASSWORD'],
+        'HOST': data['HOST'],
+        'PORT': data['PORT'],
     }
 }
 
