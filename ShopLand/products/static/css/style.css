@@ -81,12 +81,13 @@ body {
 .search-button {
     background-color: #ff7718;
     color: white;
-    border: none;
+    border: solid;
     padding: 10px 15px;
     border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
 }
+
 
 .search-button:hover {
     background-color: #e86c13;

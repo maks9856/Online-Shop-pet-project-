@@ -26,14 +26,14 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#catalogModal">
                                 <i class="fa-solid fa-layer-group"></i> Каталог
-                            </a>
+                            </button>
                         </li>
                         <li class="nav-item">
                             <form class="d-flex">
                                 <input class="form-control me-2 search-input" type="search" placeholder="Я шукаю...">
-                                <button class="btn btn-outline-success search-button" type="submit">
+                                <button class="search-button" type="submit">
                                     <i class="fa-solid fa-magnifying-glass"></i> Знайти
                                 </button>
                             </form>
@@ -53,6 +53,22 @@
             </div>
         </nav>
     </header>
+
+    <!-- Модальне вікно каталогу -->
+    <div class="modal fade" id="catalogModal" tabindex="-1" aria-labelledby="catalogModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="catalogModalLabel">Категорії товарів</h5>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <!-- перелік категорій -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <main class="container my-4">
         {% block content %}{% endblock content %}
