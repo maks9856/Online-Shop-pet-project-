@@ -1,0 +1,10 @@
+{% if subcategories %}
+<ul>
+    {% for subcategory in subcategories %}
+        <li>
+            {{ subcategory.name }}
+            {% include "products/subcategory_list.html" with subcategories=subcategory.subcategories.all %}
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}

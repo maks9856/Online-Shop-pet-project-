@@ -102,6 +102,10 @@ body {
     padding: 10px;
 }
 
+
+
+
+
 @media (max-width: 768px) {
     .navbar ul {
         flex-direction: row;
@@ -131,6 +135,9 @@ body {
         padding: 3px;
     }
 }
+
+
+
 
 @media (max-width: 425px) {
     .navbar ul {

@@ -5,5 +5,6 @@ from .models import Category
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display=['name','subcategory','created_at','updeted_at']
-    list_filter=('name','subcategory','created_at','updeted_at')
+    list_display = ('name', 'parent', 'created_at', 'updated_at')
+    search_fields = ('name',)
+    list_filter = ('parent','created_at', 'updated_at')

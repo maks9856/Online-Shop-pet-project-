@@ -1,0 +1,11 @@
+{% extends "products/base.html" %}
+
+{% block title %} {{category.name}} ShopLand{% endblock title %}
+
+{% block content %}
+<ul>
+    {% include "products/subcategory_list.html" with subcategories=subcategories %}
+</ul>
+
+
+{% endblock content %}
