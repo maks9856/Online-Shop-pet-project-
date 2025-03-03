@@ -64,46 +64,54 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
-                          <div class="col-sm">
-                            <ul class="list-group" id="category-list">
-                                {% for node in category_tree %}
-                                    <li class="list-group-item category-item" data-category-id="cat-{{ node.category.id }}">
-                                        <a href="{% url 'category_detail' node.category.slug %}">{{ node.category.name }}</a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                          </div>
-                          <div class="col-sm">
-                            <div id="subcategory-container">
-                                {% for node in category_tree %}
-                                    <div class="subcategory-list d-none" id="cat-{{ node.category.id }}">
-                                        {% if node.subcategories %}
-                                            <ul class="list-group">
-                                                {% for subnode in node.subcategories %}
-                                                    <li class="list-group-item subcategory-item">
-                                                        {{ subnode.category.name }}
-                                                        {% if subnode.subcategories %}
-                                                            <ul class="list-group sub-subcategory">
-                                                                {% for subsubnode in subnode.subcategories %}
-                                                                    <li class="list-group-item">{{ subsubnode.category.name }}</li>
-                                                                {% endfor %}
-                                                            </ul>
-                                                        {% endif %}
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
+                            <!-- Список категорій -->
+                            <div class="col-md-4 container-category">
+                                <ul id="category-list">
+                                    {% for node in category_tree %}
+                                        {% if node.category %}
+                                            <li class="category-item" data-category-id="cat-{{ node.category.id }}">
+                                                <a href="{% url 'category_detail' node.category.slug %}">{{ node.category.name }}</a>
+                                            </li>
                                         {% endif %}
-                                    </div>
-                                {% endfor %}
+                                    {% endfor %}
+                                </ul>
                             </div>
-                          </div>
+                            <!-- Список підкатегорій -->
+                            <div class="col-md-7">
+                                <div id="subcategory-container">
+                                    {% for node in category_tree %}
+                                        {% if node.category %}
+                                            <div class="subcategory-list d-none" id="cat-{{ node.category.id }}">
+                                                {% if node.subcategories %}
+                                                    <div class="subcategory-column">
+                                                        <ul>
+                                                            {% for subnode in node.subcategories %}
+                                                                <li class="subcategory-item">
+                                                                    {{ subnode.category.name }}
+                                                                    {% if subnode.subcategories %}
+                                                                        <ul>
+                                                                            {% for subsubnode in subnode.subcategories %}
+                                                                                <li class="subsubcategory-item">{{ subsubnode.category.name }}</li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    {% endif %}
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
-                      </div>              
-                    </div>
+                    </div>              
                 </div>
             </div>
         </div>
     </div>
+    
     
     <main class="container my-4">
         {% block content %}{% endblock content %}
