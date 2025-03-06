@@ -32,10 +32,11 @@ def get_category_tree(parent=None):
         for category in categories
     ]
 def product_category(request,slug):
+    category=get_object_or_404(Category,slug=slug)
     category_tree = get_category_tree()
     context={
+     'category': category,
      'category_tree': category_tree
-     
     }
     return render(request,'products/products_category.html',context=context)
 

@@ -1,5 +1,7 @@
 {% extends "products/base.html" %}
-
+{% block title %}
+{{ category.name }} - ShopLand
+{% endblock title %}
 {% block content %}
-   <h1>Продукти</h1>
+   <h1>{{category.name}}</h1>
 {% endblock content %}
