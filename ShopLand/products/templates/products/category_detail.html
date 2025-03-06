@@ -1,11 +1,21 @@
-{% extends "products/base.html" %}
+{% extends 'products/base.html' %}
 
-{% block title %} {{category.name}} ShopLand{% endblock title %}
+{% block title %}{{ category.name }} - ShopLand{% endblock title %}
 
 {% block content %}
-<ul>
-    {% include "products/subcategory_list.html" with subcategories=subcategories %}
+<ul >
+    {% for subcategory in subcategories %}
+        <li class="subcategory-item">
+            <a class="subcategory-link" href="#">{{ subcategory.name }}</a>
+            
+            {% if subcategory.subcategories.all %}
+                <ul>
+                    {% for subsubcategory in subcategory.subcategories.all %}
+                        <li class="subsubcategory-item"><a class="subcategory-link" href="#">{{ subsubcategory.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
 </ul>
-
-
 {% endblock content %}

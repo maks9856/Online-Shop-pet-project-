@@ -78,7 +78,7 @@
                             </div>
                             <!-- Список підкатегорій -->
                             <div class="col-md-7">
-                                <div id="subcategory-container">
+                                <div class="container-subcategory"  id="subcategory-container">
                                     {% for node in category_tree %}
                                         {% if node.category %}
                                             <div class="subcategory-list d-none" id="cat-{{ node.category.id }}">
@@ -87,11 +87,13 @@
                                                         <ul>
                                                             {% for subnode in node.subcategories %}
                                                                 <li class="subcategory-item">
-                                                                    {{ subnode.category.name }}
+                                                                   <a class='subcategory-link' href="{% url 'products_category' subnode.category.slug %}">{{ subnode.category.name }}</a> 
                                                                     {% if subnode.subcategories %}
                                                                         <ul>
                                                                             {% for subsubnode in subnode.subcategories %}
-                                                                                <li class="subsubcategory-item">{{ subsubnode.category.name }}</li>
+                                                                                <li class="subsubcategory-item">
+                                                                                    <a class="subcategory-link" href="{% url 'products_category' subsubnode.category.slug %}">{{ subsubnode.category.name }}</a>
+                                                                                </li>
                                                                             {% endfor %}
                                                                         </ul>
                                                                     {% endif %}

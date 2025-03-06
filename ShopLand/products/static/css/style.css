@@ -118,19 +118,17 @@ body {
     font-size: 16px;
     color: black;
     text-decoration: none;
-    display: block; /* Для покращення клікабельності */
     padding: 8px;
     border-radius: 4px;
     transition: background-color 0.3s;
 }
 
 .container-category ul li a:hover {
-    background-color: #e2e6ea;
+    color:#FF7718;
 }
 
-    /* Стилі для підкатегорій */
 .container-subcategory {
-    background-color: #ffffff; 
+    background-color: #f5f5f5; 
     padding: 10px;
     border-radius: 5px; 
     margin: 10px;
@@ -138,7 +136,7 @@ body {
 
 .subcategory-item {
     list-style-type: none;
-    font-size: 18px;
+    font-size: 15px;
     color: black;
     padding: 8px;
     border-radius: 4px;
@@ -146,34 +144,43 @@ body {
     transition: background-color 0.3s;
 }
 
-.subcategory-item:hover {
-    background-color: #e2e6ea;
+
+.container-category ul li a:hover {
+    color:#FF7718;
 }
 
 .subcategory-list {
-    display: flex;
     flex-wrap: wrap;
-    gap: 15px; /* Проміжок між стовпцями */
+    gap: 15px;
 }
 
 .subcategory-column {
-    width: 45%; /* Ширина кожного стовпця */
+    width: 35%;
 }
 
-    /* Стилі для підкатегорій підкатегорій */
+ 
 .subsubcategory-item {
     list-style-type: none;
-    font-size: 16px;
+    font-size: 14px;
     color: black;
     padding: 6px;
-    background-color: #f1f3f5;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .subsubcategory-item:hover {
-    background-color: #ced4da;
+   color: #ff7718;
+}
+
+.subcategory-link{
+    text-decoration: none;
+    color: black;
+}
+
+.subcategory-link:hover{
+    text-decoration: none;
+    color: #ff7718;
 }
 
 

@@ -6,6 +6,7 @@ def products_list(request):
     category_tree = get_category_tree()
     context={
      'category_tree': category_tree
+     
     }
     return render(request,'products/home.html',context)
 
@@ -30,4 +31,12 @@ def get_category_tree(parent=None):
         }
         for category in categories
     ]
+def product_category(request,slug):
+    category_tree = get_category_tree()
+    context={
+     'category_tree': category_tree
+     
+    }
+    return render(request,'products/products_category.html',context=context)
+
 
