@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from .models import  Category
+from .models import  Category,Product
 # Create your views here.
 def products_list(request):
 
@@ -31,13 +31,19 @@ def get_category_tree(parent=None):
         }
         for category in categories
     ]
-def product_category(request,slug):
-    category=get_object_or_404(Category,slug=slug)
-    category_tree = get_category_tree()
-    context={
-     'category': category,
-     'category_tree': category_tree
+def product_category(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    category_tree = get_category_tree() 
+    products = Product.objects.filter(category=category) 
+    age_restricted_products = products.filter(is_age_restricted=True) 
+    
+    context = {
+        'category': category,
+        'category_tree': category_tree,
+        'products': products,
+        'age_restricted_products': age_restricted_products
     }
-    return render(request,'products/products_category.html',context=context)
+
+    return render(request, 'products/products_category.html', context=context)
 
 

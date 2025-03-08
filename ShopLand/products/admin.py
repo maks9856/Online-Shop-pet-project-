@@ -12,6 +12,11 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'price', 'available', 'created_at', 'updated_at')
-    search_fields = ('name', 'category')
+    search_fields = ('name', 'category__name')
     list_filter = ('category', 'price', 'available', 'created_at', 'updated_at')
+
+    def get_form(self, request, obj=None, change=False, **kwargs):
+        form = super().get_form(request, obj, change, **kwargs)
+        form.base_fields['category'].queryset = Category.objects.exclude(parent__isnull=True)
+        return form
 
