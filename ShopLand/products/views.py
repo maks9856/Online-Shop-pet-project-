@@ -14,6 +14,7 @@ def category_detail(request,slug):
     category = get_object_or_404(Category,slug=slug)
     category_tree = get_category_tree()
     subcategories = category.subcategories.all()
+    
     context={
      'category': category,
      'category_tree': category_tree,

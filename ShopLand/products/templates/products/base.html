@@ -64,7 +64,6 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
-                            <!-- Список категорій -->
                             <div class="col-md-4 container-category">
                                 <ul id="category-list">
                                     {% for node in category_tree %}
@@ -88,6 +87,7 @@
                                                             {% for subnode in node.subcategories %}
                                                                 <li class="subcategory-item">
                                                                    <a class='subcategory-link' href="{% url 'products_category' subnode.category.slug %}">{{ subnode.category.name }}</a> 
+                                                                 
                                                                     {% if subnode.subcategories %}
                                                                         <ul>
                                                                             {% for subsubnode in subnode.subcategories %}

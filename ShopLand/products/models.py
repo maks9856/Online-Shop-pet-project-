@@ -11,6 +11,7 @@ class Category(models.Model):
         null=True, blank=True,
         related_name='subcategories'
     )
+    
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
@@ -26,10 +27,13 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    def get_filter_characteristics(self):
+        return self.characteristics.filter(show_in_filters=True)
     
 class Characteristic(models.Model):
     name = models.CharField(max_length=100, unique=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='characteristics')
+    show_in_filters = models.BooleanField(default=False)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     class Meta:
