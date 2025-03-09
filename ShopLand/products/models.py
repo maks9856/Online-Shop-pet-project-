@@ -27,9 +27,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
     
-class Carecteristic(models.Model):
+class Characteristic(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='carecteristics')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='characteristics')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     class Meta:
@@ -41,11 +41,13 @@ class Carecteristic(models.Model):
             models.Index(fields=['category'])
         ]
 
+    def __str__(self):
+        return self.name
+
 class Product(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True, editable=False)
     img = models.ImageField(upload_to='products/', blank=True)
-    characteristics = models.TextField(blank=True)
     description = models.TextField(blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -83,7 +85,17 @@ class Product(models.Model):
             return self.price - self.price * self.discount / 100
         return self.price
     
+class ProductCharacteristic(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_characteristics')
+    characteristic = models.ForeignKey(Characteristic, on_delete=models.CASCADE, related_name='product_characteristics')
+    value = models.CharField(max_length=255)  
     
+    class Meta:
+        unique_together =['product', 'characteristic']
+
+    def __str__(self):
+        return f"{self.product.name} - {self.characteristic.name}: {self.value}"
+
     
     
     
