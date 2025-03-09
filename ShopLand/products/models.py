@@ -27,6 +27,19 @@ class Category(models.Model):
     def __str__(self):
         return self.name
     
+class Carecteristic(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='carecteristics')
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'carecteristic'
+        verbose_name_plural = 'carecteristics'
+        indexes = [
+            models.Index(fields=['name']),
+            models.Index(fields=['category'])
+        ]
 
 class Product(models.Model):
     name = models.CharField(max_length=100, unique=True)

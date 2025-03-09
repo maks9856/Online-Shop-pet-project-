@@ -3,15 +3,19 @@
 {{ category.name }} - ShopLand
 {% endblock title %}
 {% block content %}
- {% comment "" %}
-  <ul>
+ 
+  <ul class="products-list">
       {% for product in products %}
-         <li>
+         <li class="product-item">
+            <div class="product-card">
+            <img src="{{product.img.url}}" alt="{{ product.name }}">
             <h2>{{ product.name }}</h2>
             <p>{{ product.description }}</p>
             <p>Price: {{ product.price }}</p>
+            </div>
          </li>
+      {% endfor %}
    </ul>
- {% endcomment %}
+
   
 {% endblock content %}

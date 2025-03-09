@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product
+from .models import Category, Product,Carecteristic
 # Register your models here.
 
 
@@ -20,3 +20,12 @@ class ProductAdmin(admin.ModelAdmin):
         form.base_fields['category'].queryset = Category.objects.exclude(parent__isnull=True)
         return form
 
+@admin.register(Carecteristic)
+class CarecteristicAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'created_at', 'updated_at')
+    search_fields = ('name', 'category__name')
+    list_filter = ('category', 'created_at', 'updated_at')
+    def get_form(self, request, obj=None, change=False, **kwargs):
+        form = super().get_form(request, obj, change, **kwargs)
+        form.base_fields['category'].queryset = Category.objects.exclude(parent__isnull=True)
+        return form
