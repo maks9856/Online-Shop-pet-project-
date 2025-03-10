@@ -115,9 +115,16 @@
     </div>
     
     
-    <main class="container my-4">
-        {% block content %}{% endblock content %}
-    </main>
+    <div class="container">
+        <aside>
+            <h2>Aside</h2>
+        </aside>
+        <main >
+            {% block content %}
+            <h2>fafa</h2> 
+            {% endblock content %}
+        </main>
+    </div>
 
     <footer class="text-center py-3 bg-light">
         <p>&copy; {% now "Y" %} Інтернет магазин-ShopLand</p>
