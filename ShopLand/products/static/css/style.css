@@ -7,12 +7,12 @@ body {
     min-height: 100vh;
 }
 
-.container {
+.container-main {
+    margin: 0;
+    padding: 0;
     display: flex;
     flex: 1;
     flex-direction: row;
-    margin: 0;
-    padding: 0;
 }
 aside{
     width: 25%;
@@ -120,6 +120,21 @@ main {
     padding: 10px;
 }
 
+.sidebar-content{
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar-content > li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.sidebar-content li > ul > li {
+    padding: 0;
+    border-bottom: none;
+}
+
 .container-category {
     background-color: #f5f5f5; 
     padding: 10px;
@@ -203,14 +218,14 @@ main {
 .products-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 10px;
     justify-content: center;
 }
 
 .product-item {
     list-style: none;
-    width: calc(20% - 20px); /* 100% / 5 елементів = 20% ширина для кожного елемента */
-    box-sizing: border-box; /* Забезпечує, що padding не впливає на ширину */
+    width: calc(20% - 20px);
+    box-sizing: border-box;
 }
 
 .product-card {
