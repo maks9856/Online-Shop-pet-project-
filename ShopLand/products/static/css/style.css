@@ -15,8 +15,10 @@ body {
     flex-direction: row;
 }
 aside{
-    width: 25%;
+    width: 20%;
     background: #f4f4f4;
+    padding: 0px 35px;
+    
 }
 main {
     flex: 1;
@@ -133,6 +135,20 @@ main {
 .sidebar-content li > ul > li {
     padding: 0;
     border-bottom: none;
+}
+
+.inside-list {
+    list-style-type: none;
+    padding: 0;
+}
+.inside-list a {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+.inside-list a:hover {
+    color: #ff7718;
+  
 }
 
 .container-category {
