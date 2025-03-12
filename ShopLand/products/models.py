@@ -11,7 +11,6 @@ class Category(models.Model):
         null=True, blank=True,
         related_name='subcategories'
     )
-    
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 

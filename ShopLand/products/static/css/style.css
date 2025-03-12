@@ -18,7 +18,7 @@ aside{
     width: 20%;
     background: #f4f4f4;
     padding: 0px 35px;
-    
+    border-right:#21201e 1px solid;
 }
 main {
     flex: 1;

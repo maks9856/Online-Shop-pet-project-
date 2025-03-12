@@ -1,17 +1,20 @@
 {% extends 'products/base.html' %}
-
+{% load static %}
 {% block title %}{{ category.name }} - ShopLand{% endblock title %}
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/category_detail.css' %}">
+{% endblock extracss %}
 
 {% block content %}
-<ul >
+<ul class="subcategories-list">
     {% for subcategory in subcategories %}
-        <li class="subcategory-item">
-            <a class="subcategory-link" href="#">{{ subcategory.name }}</a>
+        <li class="">
+            <a class="subcategory-link" href="{% url 'products_category' subcategory.slug %}">{{ subcategory.name }}</a>
             
             {% if subcategory.subcategories.all %}
-                <ul>
+                <ul class="subsubcategory-list">
                     {% for subsubcategory in subcategory.subcategories.all %}
-                        <li class="subsubcategory-item"><a class="subcategory-link" href="#">{{ subsubcategory.name }}</a></li>
+                        <li class="subsubcategory-item"><a class="subcategory-link" href="{% url 'products_category' subsubcategory.slug %}">{{ subsubcategory.name }}</a></li>
                     {% endfor %}
                 </ul>
             {% endif %}
@@ -19,3 +22,5 @@
     {% endfor %}
 </ul>
 {% endblock content %}
+
+
