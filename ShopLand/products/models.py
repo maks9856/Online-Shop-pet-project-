@@ -1,10 +1,11 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from unidecode import unidecode
 
 class Category(models.Model):
     name = models.CharField(max_length=60, unique=True)
-    slug = models.SlugField(max_length=60, unique=True, editable=False)
+    slug = models.SlugField(max_length=60, unique=True, editable=False,db_index=True)
     parent = models.ForeignKey(
         'self',
         on_delete=models.CASCADE,
@@ -21,7 +22,7 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = slugify(unidecode(self.name))
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -74,7 +75,7 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = slugify(unidecode(self.name))
         super().save(*args, **kwargs)
 
     def __str__(self):
