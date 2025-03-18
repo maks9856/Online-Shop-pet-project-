@@ -32,6 +32,7 @@ def get_category_tree(parent=None):
         }
         for category in categories
     ]
+
 def product_category(request, slug):
     category = get_object_or_404(Category, slug=slug)
     category_tree = get_category_tree() 
@@ -46,5 +47,33 @@ def product_category(request, slug):
     }
 
     return render(request, 'products/products_category.html', context=context)
+
+def product_details_main(request,slug):
+    product=get_object_or_404(Product,slug=slug)
+    category_tree = get_category_tree()
+    context = {
+        'category_tree': category_tree,
+        'product': product,
+    } 
+    return render(request, 'products/product_details_main.html',context=context)
+
+
+def product_details_characteristic(request,slug):
+    product=get_object_or_404(Product,slug=slug)
+    category_tree = get_category_tree()
+    context = {
+        'category_tree': category_tree,
+        'product': product,
+    } 
+    return render(request, 'products/product_details_characteristic.html',context=context)
+
+def product_details_reviews(request,slug):
+    product=get_object_or_404(Product,slug=slug)
+    category_tree = get_category_tree()
+    context = {
+        'category_tree': category_tree,
+        'product': product,
+    } 
+    return render(request, 'products/product_details_reviews.html',context=context)
 
 

@@ -1,0 +1,23 @@
+<div class="product_detail_navigetion">
+    <ul>        
+        <li>
+            <a href="{% url 'product_details_main' product.slug %}" 
+            class="{% if '/product_details/' in request.path and '/characteristic' not in request.path and '/reviews' not in request.path %}active{% endif %}">
+                Усе про товар
+            </a>
+        </li>
+        
+        <li>
+            <a href="{% url 'product_details_characteristic' product.slug %}" 
+            class="{% if '/product_details/' in request.path and '/characteristic' in request.path %}active{% endif %}">
+                Характеристики
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'product_details_reviews' product.slug %}"
+            class="{% if '/product_details/' in request.path and '/reviews' in request.path %} active {% endif %}">
+                Відгуки 
+            </a>
+        </li>
+    </ul>
+</div>
