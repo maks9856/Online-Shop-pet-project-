@@ -1,7 +1,37 @@
 {% extends 'products/base.html' %}
-{% block title %}ShopLand-{{product.name}}{% endblock title %}
+{% load static %}
+{% block title %}ShopLand-{{ product.name }}{% endblock title %}
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/product_details.css' %}">
+{% endblock extracss %}
+
+
 {% block content %}
 {% include 'products/_product_menu.html' %}
 
+<div class="product-details">
+    <div class="product-item">
+        <img src="{{ product.img.url }}" alt="{{product.name}}" class="product-images">
+    </div>
+    <div class="product-item">
+        <div class="product-info">
+            <p> {{product.name}} </p>
+            <div class="container-info">
+                <p>{{product.price}} <i class="fa-solid fa-hryvnia-sign"></i> </p>
+                <button><i class="fa-solid fa-cart-shopping"></i> Купити</button>
+            </div>
+        </div>
+        <div class="container-wallet">
+            <p><i class="fa-solid fa-wallet"></i> Оплата під час отримання товару, Картою онлайн, Оплата карткою у відділенні, Apple Pay, Google Pay.</p>
+        </div>
+    </div>
+    <div class="product-item">
+        <h1>Опис</h1>
+        <div>{{product.description}}</div>
+        <h1>Характеристики</h1>
+        
+        <a href="{% url 'product_details_characteristic' product.slug %}">Переглянути всі характеристики <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+</div>
 
 {% endblock content %}

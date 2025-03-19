@@ -11,13 +11,15 @@
     {% for product in products %}
       <li class="product-item">
         <div class="product-card">
-          <a href="{% url 'product_details_main' product.slug%}">
+          <a href="{% url 'product_details_main' product.slug %}">
             <img src="{{ product.img.url }}" alt="{{ product.name }}">
             <h2>{{ product.name|slice:":40" }}{% if product.name|length > 40 %}...{% endif %}</h2>
-            <p class="price">Price:{{ product.price }}</p>
           </a>
-          <button>Add to Cart</button>
-        </div>
+          <div class="price-and-button">
+            <p class="price">Ціна:{{ product.price }}</p>
+            <button><i class="fa-solid fa-cart-shopping"></i></button>
+          </div>
+        </div>              
       </li>
     {% endfor %}
   </ul>
