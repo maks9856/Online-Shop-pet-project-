@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from .models import  Category,Product
+from .models import  Category,Product,ProductCharacteristic
 # Create your views here.
 def products_list(request):
 
@@ -50,10 +50,12 @@ def product_category(request, slug):
 
 def product_details_main(request,slug):
     product=get_object_or_404(Product,slug=slug)
+    characteristics = ProductCharacteristic.objects.filter(product=product)
     category_tree = get_category_tree()
     context = {
         'category_tree': category_tree,
         'product': product,
+        'characteristics': characteristics
     } 
     return render(request, 'products/product_details_main.html',context=context)
 

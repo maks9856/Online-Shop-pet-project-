@@ -1,5 +1,9 @@
 {% extends 'products/base.html' %}
+{% load static %}
 {% block title %}ShopLand-{{product.name}}{% endblock title %}
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/product_details.css' %}">
+{% endblock extracss %}
 {% block content %}
 {% include 'products/_product_menu.html' %}
 
