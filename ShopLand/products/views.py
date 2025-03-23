@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from .models import  Category,Product,ProductCharacteristic
+from .models import  Category,Product,ProductCharacteristic,ProductImage
 # Create your views here.
 def products_list(request):
 
@@ -10,8 +10,8 @@ def products_list(request):
     }
     return render(request,'products/home.html',context)
 
-def category_detail(request,slug):
-    category = get_object_or_404(Category,slug=slug)
+def category_detail(request,category_choice):
+    category = get_object_or_404(Category,slug=category_choice)
     category_tree = get_category_tree()
     subcategories = category.subcategories.all()
     
@@ -33,8 +33,8 @@ def get_category_tree(parent=None):
         for category in categories
     ]
 
-def product_category(request, slug):
-    category = get_object_or_404(Category, slug=slug)
+def product_category(request, category_choice):
+    category = get_object_or_404(Category, slug=category_choice)
     category_tree = get_category_tree() 
     products = Product.objects.filter(category=category) 
     age_restricted_products = products.filter(is_age_restricted=True) 
@@ -50,12 +50,14 @@ def product_category(request, slug):
 
 def product_details_main(request,slug):
     product=get_object_or_404(Product,slug=slug)
+    images=ProductImage.objects.filter(product=product)
     characteristics = ProductCharacteristic.objects.filter(product=product)
     category_tree = get_category_tree()
     context = {
         'category_tree': category_tree,
         'product': product,
-        'characteristics': characteristics
+        'characteristics': characteristics,
+        'images':images
     } 
     return render(request, 'products/product_details_main.html',context=context)
 

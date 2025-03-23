@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product,Characteristic, ProductCharacteristic
+from .models import Category, Product,Characteristic, ProductCharacteristic,ProductImage
 from django.utils.html import format_html
 # Register your models here.
 
@@ -13,13 +13,18 @@ class CategoryAdmin(admin.ModelAdmin):
 class ProductCharacteristicInline(admin.TabularInline):
     model = ProductCharacteristic
     extra = 1  
-    fields = ('characteristic', 'value')  
+    fields = ('characteristic', 'value') 
+
+class ProductImagesInline(admin.TabularInline):
+    model=ProductImage
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'price', 'available', 'created_at', 'updated_at')
     search_fields = ('name', 'category__name')
     list_filter = ('category', 'price', 'available', 'created_at', 'updated_at')
-    inlines = [ProductCharacteristicInline] 
+    inlines = [ProductCharacteristicInline,ProductImagesInline] 
     
     def get_form(self, request, obj=None, change=False, **kwargs):
         form = super().get_form(request, obj, change, **kwargs)

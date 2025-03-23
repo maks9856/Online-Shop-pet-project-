@@ -89,6 +89,18 @@ class Product(models.Model):
             return self.price - self.price * self.discount / 100
         return self.price
     
+
+class ProductImage(models.Model):
+    product=models.ForeignKey(Product,on_delete=models.CASCADE,default=None)
+    img=models.ImageField(upload_to='products/',blank=True)
+
+    def __str__(self):
+        return self.product.name
+    
+
+
+
+
 class ProductCharacteristic(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_characteristics')
     characteristic = models.ForeignKey(Characteristic, on_delete=models.CASCADE, related_name='product_characteristics')
