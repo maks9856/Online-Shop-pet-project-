@@ -11,12 +11,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 #need to synchronize times before working with the s3 aws
 from pathlib import Path
-import json
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
-#read file keyForProgram.json
-with open('keyForProgram.json','r', encoding='utf-8') as f:
-    data=json.load(f)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = data['SECRET_KEY']
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -61,10 +60,10 @@ STORAGES = {
 }
 
 
-AWS_ACCESS_KEY_ID = data["AWS_ACCESS_KEY_ID"]
-AWS_SECRET_ACCESS_KEY = data["AWS_SECRET_ACCESS_KEY"]
-AWS_STORAGE_BUCKET_NAME = data["AWS_STATIC_BUCKET_NAME"]
-AWS_S3_REGION_NAME = data["AWS_S3_REGION_NAME"]
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 AWS_S3_FILE_OVERWRITE = False
 AWS_QUERYSTRING_AUTH = False
@@ -108,11 +107,11 @@ WSGI_APPLICATION = 'ShopLand.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': data['NAME'],
-        'USER': data['USER'],
-        'PASSWORD': data['PASSWORD'],
-        'HOST': data['HOST'],
-        'PORT': data['PORT'],
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 

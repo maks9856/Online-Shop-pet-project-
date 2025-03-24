@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404
 from .models import  Category,Product,ProductCharacteristic,ProductImage
+import unidecode
 # Create your views here.
 def products_list(request):
 
