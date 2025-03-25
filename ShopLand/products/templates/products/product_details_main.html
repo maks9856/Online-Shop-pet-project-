@@ -16,6 +16,7 @@
     <div class="product-item">
         <div class="product-info">
             <p> {{product.name}} </p>
+            <a href="{% url "product_details_reviews" product.slug %}">Залишити відгук <i class="fa-solid fa-arrow-right"></i></a>
             <div class="container-info">
                 <p>{{product.price}} <i class="fa-solid fa-hryvnia-sign"></i> </p>
                 <button><i class="fa-solid fa-cart-shopping"></i> Купити</button>
@@ -28,22 +29,8 @@
     <div class="product-item">
         <h1>Опис</h1>
         <div>{{product.description}}</div>
-        <h1>Характеристики</h1>
-        <table class="characteristics-table">
-            <tbody>
-                {% for characteristic in characteristics|slice:5 %}
-                    <tr>
-                        <td class="char-name">{{ characteristic.characteristic.name }}</td>
-                        <td class="char-dots"></td>
-                        <td class="char-value">{{ characteristic.value }}</td>
-                    </tr>
-                {% empty %}
-                    <tr>
-                        <td colspan="2">Характеристики відсутні</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <h1>Характеристики </h1>
+        {% include "products/_product_properties.html" %}
         <a href="{% url 'product_details_characteristic' product.slug %}">Переглянути всі характеристики <i class="fa-solid fa-arrow-right"></i></a>
     </div>
 </div>

@@ -6,6 +6,22 @@
 {% endblock extracss %}
 {% block content %}
 {% include 'products/_product_menu.html' %}
+<div class="product-details-characteristics">
+    <div class="product-item characteristic_size">
+        <h1>Характеристики - {{ product.name }}</h1>
+        {% include "products/_product_properties.html" %}
+    </div>
+    <div class="product-item product-item__margin">
+        <div class="product-item__image__name_characteristics">
+            <img class="product-item__image" src="{{ product.img.url }}" alt="{{ product.name }}">
+            <h2>{{ product.name }}</h2>
+        </div>
+        <div class="container-info product-item__price">
+            <p>{{ product.price }} <i class="fa-solid fa-hryvnia-sign"></i></p>
+            <button><i class="fa-solid fa-cart-shopping"></i> Купити</button>
+    </div>
+</div>
+
 
 
 {% endblock content %}

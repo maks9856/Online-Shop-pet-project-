@@ -66,9 +66,11 @@ def product_details_main(request,slug):
 def product_details_characteristic(request,slug):
     product=get_object_or_404(Product,slug=slug)
     category_tree = get_category_tree()
+    characteristics = ProductCharacteristic.objects.filter(product=product)
     context = {
         'category_tree': category_tree,
         'product': product,
+        'characteristics': characteristics,
     } 
     return render(request, 'products/product_details_characteristic.html',context=context)
 
