@@ -38,13 +38,11 @@ def product_category(request, category_choice):
     category = get_object_or_404(Category, slug=category_choice)
     category_tree = get_category_tree() 
     products = Product.objects.filter(category=category) 
-    age_restricted_products = products.filter(is_age_restricted=True) 
     
     context = {
         'category': category,
         'category_tree': category_tree,
         'products': products,
-        'age_restricted_products': age_restricted_products
     }
 
     return render(request, 'products/products_category.html', context=context)

@@ -8,9 +8,9 @@
 {% block content %}
   <ul class="products-list">
     {% for product in products %}
-      <li class="product-item">
+      <li class="product-items">
         <div class="product-card">
-          <a href="{% url 'product_details_main' product.slug %}">
+          <a class="product-card-link" href="{% url 'product_details_main' product.slug %}">
             <img src="{{ product.img.url }}" alt="{{ product.name }}">
             <h2>{{ product.name|slice:":40" }}{% if product.name|length > 40 %}...{% endif %}</h2>
           </a>
@@ -22,4 +22,39 @@
       </li>
     {% endfor %}
   </ul>
+  {% if category.is_age_restricted %}
+  
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Підтвердіть свій вік</h5>
+        </div>
+        <div class="modal-body">
+        <p class="age-question">
+          Вам виповнилося 18 років?
+        </p>
+        <p>
+          Натискаючи «Так» ви також надаєте згоду на отримання інформації про продукцію, що представлена на сайті, за допомогою засобів дистанційного зв’язку згідно з ч. 2 ст. 15 Закону України «Про захист прав споживачів»
+        </p>
+        </div>
+        <div class="modal-footer button-container">
+          <button type="button" class="btn btn-primary big-button" id="closeModalBtn">Так</button>
+          <button type="button" class="btn btn-secondary big-button" data-dismiss="modal" onclick="window.location.href='{% url 'home' %}';">Ні</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var myModal = new bootstrap.Modal(document.getElementById('exampleModalCenter'));
+      myModal.show();
+
+      document.getElementById("closeModalBtn").addEventListener("click", function() {
+        myModal.hide();
+      });
+    });
+  </script>
+{% endif %}
+
 {% endblock content %}

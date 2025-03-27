@@ -260,7 +260,7 @@ main {
     justify-content: center;
 }
 
-.product-item {
+.product-items {
     list-style: none;
     width: calc(20% - 20px);
     box-sizing: border-box;
@@ -566,6 +566,31 @@ main {
 }
 .product-item__price button{
    width: 100%;
+}
+.modal-header h5{
+    margin: 0;
+    font-size: 24px;
+    color: #000000;
+}
+.product-card-link{
+    text-decoration: none;
+}
+.age-question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+    font-size: 18px;
+    color: #000000;
+}
+.button-container {
+    display: flex; 
+    gap: 10px;
+}
+.big-button{
+    flex: 1;
+    padding: 10px;
+    text-align: center;
 }
 @media (max-width: 768px) {
     .navbar ul {
