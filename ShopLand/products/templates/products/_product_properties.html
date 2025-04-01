@@ -3,9 +3,9 @@
     <tbody>
         {% for characteristic in characteristics %}
             <tr>
-                <td class="char-name">{{ characteristic.characteristic.name }}</td>
+                <td class="char-name">{{ characteristic.characteristic.characteristic.name }}</td>
                 <td class="char-dots"></td>
-                <td class="char-value">{{ characteristic.value }}</td>
+                <td class="char-value">{{characteristic.characteristic.value }}</td>
             </tr>
         {% empty %}
             <tr>
@@ -17,9 +17,9 @@
     <tbody>
         {% for characteristic in characteristics %}
             <tr>
-                <td class="char-name">{{ characteristic.characteristic.name }}</td>
+                <td class="char-name">{{ characteristic.characteristic.characteristic.name }}</td>
                 <td class="char-dots"></td>
-                <td class="char-value">{{ characteristic.value }}</td>
+                <td class="char-value">{{ characteristic.characteristic.value }}</td>
             </tr>
         {% empty %}
             <tr>

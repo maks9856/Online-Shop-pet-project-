@@ -36,13 +36,17 @@ def get_category_tree(parent=None):
 
 def product_category(request, category_choice):
     category = get_object_or_404(Category, slug=category_choice)
+    subcategories = category.get_subcategories()
     category_tree = get_category_tree() 
-    products = Product.objects.filter(category=category) 
-    
+    products = Product.objects.filter(category__in=[category] + list(subcategories))
+    #characteristics = ProductCharacteristic.objects.filter(product=product
+
     context = {
         'category': category,
         'category_tree': category_tree,
         'products': products,
+        #'characteristics': characteristics,
+       
     }
 
     return render(request, 'products/products_category.html', context=context)

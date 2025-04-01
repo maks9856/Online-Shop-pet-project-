@@ -22,6 +22,22 @@
       </li>
     {% endfor %}
   </ul>
+  <ul class="products-list">
+    {% for product in under %}
+      <li class="product-items">
+        <div class="product-card">
+          <a class="product-card-link" href="{% url 'product_details_main' product.slug %}">
+            <img src="{{ product.img.url }}" alt="{{ product.name }}">
+            <h2>{{ product.name|slice:":40" }}{% if product.name|length > 40 %}...{% endif %}</h2>
+          </a>
+          <div class="price-and-button">
+            <p class="price">Ціна:{{ product.price }}</p>
+            <button><i class="fa-solid fa-cart-shopping"></i></button>
+          </div>
+        </div>              
+      </li>
+    {% endfor %}
+  </ul>
   {% if category.is_age_restricted %}
   
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

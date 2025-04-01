@@ -30,25 +30,9 @@ class Category(models.Model):
         return self.name
     def get_filter_characteristics(self):
         return self.characteristics.filter(show_in_filters=True)
+    def get_subcategories(self):
+        return Category.objects.filter(parent=self)
     
-class Characteristic(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='characteristics')
-    show_in_filters = models.BooleanField(default=False)
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now=True)
-    class Meta:
-        ordering = ['name']
-        verbose_name = 'carecteristic'
-        verbose_name_plural = 'carecteristics'
-        indexes = [
-            models.Index(fields=['name']),
-            models.Index(fields=['category'])
-        ]
-
-    def __str__(self):
-        return self.name
-
 class Product(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True, editable=False)
@@ -97,17 +81,41 @@ class ProductImage(models.Model):
     def __str__(self):
         return self.product.name
     
+class Characteristic(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='characteristics')
+    
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'carecteristic'
+        verbose_name_plural = 'carecteristics'
+        indexes = [
+            models.Index(fields=['name']),
+            models.Index(fields=['category'])
+        ]
 
+    def __str__(self):
+        return self.name
+    
+class CharacteristicValue(models.Model):
+    characteristic = models.ForeignKey(Characteristic, on_delete=models.CASCADE, related_name='values')
+    value = models.CharField(max_length=100)
 
+    class Meta:
+        ordering = ['characteristic', 'value']
+        verbose_name = 'characteristic value'
+        verbose_name_plural = 'characteristic values'
+        unique_together = ['characteristic', 'value']
 
+    def __str__(self):
+        return f"{self.characteristic.name}: {self.value}"
 
 class ProductCharacteristic(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_characteristics')
-    characteristic = models.ForeignKey(Characteristic, on_delete=models.CASCADE, related_name='product_characteristics')
-    value = models.CharField(max_length=255)  
+    characteristic = models.ForeignKey(CharacteristicValue, on_delete=models.CASCADE, related_name='product_characteristics_values')
     
     class Meta:
         unique_together =['product', 'characteristic']
 
     def __str__(self):
-        return f"{self.product.name} - {self.characteristic.name}: {self.value}"
+        return f"{self.characteristic.characteristic.name}: {self.characteristic.value}"
